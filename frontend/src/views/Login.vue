@@ -1,44 +1,42 @@
 <template>
   <div class="wrapper">
-    <div class="container">
+    <div class="container mt-5">
       <div class="row d-flex justify-content-center">
-        <div class="col-xl-8">
+        <div class="col-xl-6">
           <div class="card border-0">
             <div class="card-body p-0">
               <div class="row no-gutters">
-                <div class="col-lg-8">
-                  <div class="p-5">
-                    <div class="mb-4 d-flex">
-                      <h3 class="h2 title text-theme">
-                        {{ this.title }}
-                      </h3>
-                    </div>
-                    <login-page v-if="!this.register" />
-                    <register-page v-if="this.register" />
-                    <div
-                      class="text-muted text-center mt-3 mb-0"
-                      v-if="!this.register"
+                <div class="p-5">
+                  <div class="mb-4 d-flex">
+                    <h1 class="title text-theme">
+                      {{ this.title }}
+                    </h1>
+                  </div>
+                  <login-page v-if="!this.register" />
+                  <register-page v-if="this.register" />
+                  <div
+                    class="text-muted text-center mt-3 mb-0"
+                    v-if="!this.register"
+                  >
+                    Don't have an account?
+                    <a
+                      href="#"
+                      v-on:click="toRegister"
+                      class="text-primary ml-1"
+                      >Register</a
                     >
-                      Don't have an account?
-                      <a
-                        href="#"
-                        v-on:click="toRegister"
-                        class="text-primary ml-1"
-                        >Register</a
-                      >
-                    </div>
-                    <div
-                      class="text-muted text-center mt-3 mb-0"
-                      v-if="this.register"
+                  </div>
+                  <div
+                    class="text-muted text-center mt-3 mb-0"
+                    v-if="this.register"
+                  >
+                    Already have an account?
+                    <a
+                      href="#"
+                      v-on:click="toRegister"
+                      class="text-primary ml-1"
+                      >login</a
                     >
-                      Already have an account?
-                      <a
-                        href="#"
-                        v-on:click="toRegister"
-                        class="text-primary ml-1"
-                        >login</a
-                      >
-                    </div>
                   </div>
                 </div>
               </div>
@@ -71,7 +69,7 @@ export default Vue.extend({
   methods: {
     toRegister: function () {
       this.register = !this.register;
-      this.title = this.register ? "Register":  "Login" ;
+      this.title = this.register ? "Register" : "Login";
     },
   },
 });

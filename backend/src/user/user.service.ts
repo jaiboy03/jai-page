@@ -2,8 +2,8 @@ import { ForbiddenException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import bcrypt from 'bcrypt';
-import { CreateUserDto } from './create-user.dto';
+import * as bcrypt from 'bcrypt';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
@@ -28,13 +28,13 @@ export class UserService {
 
     async findAll(): Promise<User[]> {
         return this.userRepository.find({
-            select : ["id", "userId", "name"],
+            select : ["id", "userId", "name", "role"],
         });
     }
 
     async findOne(id : string) : Promise<User> {
         return this.userRepository.findOne({userId : id},{
-            select: ["id", "userId", "name"]
+            select: ["id", "userId", "name", "role"]
         })
     }
 }

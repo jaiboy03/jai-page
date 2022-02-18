@@ -5,7 +5,6 @@
     "username" : "root",
     "password" : "032508",
     "database" : "jj_crud",
-    "entities" : ["src/entities/*.entity{.ts,.js}"],
-    "logging" : true,
+    "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize" : true
 }
