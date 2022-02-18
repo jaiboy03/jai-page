@@ -11,7 +11,11 @@ const beforeAuth = (isAuth: any) => (from: any, to: any, next: any) => {
   if ((isAuthenticated && isAuth) || (!isAuthenticated && !isAuth)) {
     return next()
   } else {
-    next("/login")
+    if(from.path == "/login"){
+      next("/")
+    }else {
+      next("/login")
+    }
   }
 }
 
