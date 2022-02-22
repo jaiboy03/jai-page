@@ -117,6 +117,28 @@ export default new Vuex.Store({
             reject(error);
           })
       })
+    },
+    deleteMemo: function (context, payload) {
+      return new Promise((resolve, reject) => {
+        http.post("/board/" + payload)
+          .then(response => {
+            resolve(response);
+          })
+          .catch(error => {
+            reject(error);
+          })
+      })
+    },
+    updateMemo: function (context, payload) {
+      return new Promise((resolve, reject) => {
+        http.post("/board/update" + payload) //임시 주소
+          .then(response => {
+            resolve(response);
+          })
+          .catch(error => {
+            reject(error);
+          })
+      })
     }
   },
 

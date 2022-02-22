@@ -13,8 +13,12 @@ export class BoardController {
     }
 
     @Get(":id")
-    findAll(@Param('id') id : string): Promise<Memo[]> {
+    findAll(@Param('id') id: string): Promise<Memo[]> {
         return this.boardService.findAll(id);
     }
 
+    @Post(":id")
+    removeOne(@Param('id') id: number): Promise<void> {
+        return this.boardService.remove(id);
+    }
 }
