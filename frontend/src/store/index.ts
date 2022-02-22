@@ -12,7 +12,8 @@ export default new Vuex.Store({
     token: {
       accessToken: jwt.getToken()
     },
-    isAuthenticated: !!jwt.getToken()
+    isAuthenticated: !!jwt.getToken(),
+    userId: jwt.getInfo()
   },
   getters: {
     getAccessToken: function (state) {
@@ -20,18 +21,22 @@ export default new Vuex.Store({
     },
     isAuthenticated: function (state) {
       return state.isAuthenticated;
-    }
+    },
+    getUserID: function (state) {
+      return state.userId;
+    },
   },
   mutations: {
     logout: function (state, payload = {}) {
-      state.token.accessToken = ""
-      state.isAuthenticated = false
-      jwt.destroyToken()
+      state.token.accessToken = "";
+      state.isAuthenticated = false;
+      jwt.destroyToken();
+      jwt.destroyInfo();
     },
     login: function (state, payload = {}) {
-      state.token.accessToken = payload.accessToken
-      state.isAuthenticated = true
-      jwt.saveToken(payload.accessToken)
+      state.token.accessToken = payload.accessToken;
+      state.isAuthenticated = true;
+      jwt.saveToken(payload.accessToken);
     }
   },
   actions: {
@@ -45,7 +50,7 @@ export default new Vuex.Store({
     },
     register: function (context, payload) {
       const params: RegisterModel = {
-        id: payload.userId,
+        userId: payload.userId,
         name: payload.name,
         password: payload.password,
         role: payload.role
@@ -53,11 +58,6 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         http.post("/user", params)
           .then(response => {
-            const { data } = response;
-            context.commit("login", {
-              accessToken: data.accessToken
-            })
-
             resolve(response)
           })
           .catch(error => {
@@ -76,8 +76,9 @@ export default new Vuex.Store({
             const { data } = response;
             context.commit("login", {
               accessToken: data.accessToken
-            })
-            resolve(response)
+            });
+            jwt.saveInfo(response.data.userId);
+            resolve(response);
           })
           .catch(error => {
             reject(error)

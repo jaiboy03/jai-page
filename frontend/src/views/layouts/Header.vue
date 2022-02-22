@@ -1,47 +1,58 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark border theme">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">JJ's CRUD</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarsExample03"
-        aria-controls="navbarsExample03"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarsExample03">
-        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-        </ul>
-        <form>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Search"
-            aria-label="Search"
-          />
-        </form>
-      </div>
-    </div>
-  </nav>
+  <div>
+    <b-navbar
+      class="navbar-expand-sm navbar-dark theme px-4"
+      toggleable="lg"
+      type="dark"
+      variant="info"
+    >
+      <b-navbar-brand href="/">JJ's Site</b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item href="/poster">Memo</b-nav-item>
+          <b-nav-item href="#" disabled>Disabled</b-nav-item>
+        </b-navbar-nav>
+
+        <b-navbar-nav class="ms-auto">
+          <!-- <b-nav-item-dropdown text="User">
+            <b-dropdown-item href="#">Profile</b-dropdown-item>
+            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+          </b-nav-item-dropdown> -->
+          <b-nav-item-dropdown right v-if="isAuth">
+            <template slot="button-content" v-text="UserName">
+              <b-icon icon="person-fill"></b-icon>
+              <b>{{ UserName }}</b>
+            </template>
+            <b-dropdown-item href="#">
+              <b-icon icon="gear-fill" aria-hidden="true"></b-icon>&nbsp;<b
+                >Account</b
+              >
+            </b-dropdown-item>
+            <b-dropdown-item href="#" v-on:click="Logout()"
+              ><b-icon icon="power" aria-hidden="true"></b-icon>&nbsp;<b
+                >Logout</b
+              >
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({});
+<script lang="ts" src="./header.ts">
 </script>
 
 <style scoped>
 .theme {
-  background-color: #5369f8 !important;
+  background-color: #6667ab !important;
+}
+</style>
+<style>
+.dropdown-menu {
+  right: 0 !important;
 }
 </style>

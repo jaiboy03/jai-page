@@ -27,4 +27,5 @@ export class UserController {
     findOne(@Param('id') id : string) : Promise<User> {
         return this.userService.findOne(id);
     }
+
 }

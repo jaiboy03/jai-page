@@ -1,12 +1,12 @@
 <template>
   <div class="wrapper">
-    <div class="container mt-5">
+    <div class="container pt-5">
       <div class="row d-flex justify-content-center">
-        <div class="col-xl-6">
+        <div class="col-lg-6">
           <div class="card border-0">
             <div class="card-body p-0">
               <div class="row no-gutters">
-                <div class="p-5">
+                <div class="p-5 auth_container">
                   <div class="mb-4 d-flex">
                     <h1 class="title text-theme">
                       {{ this.title }}
@@ -80,10 +80,18 @@ export default Vue.extend({
   font: Helvetica, arial, sans-serif;
 }
 
+.wrapper {
+  height: calc(100vh - 56px);
+}
+
+.auth_container {
+  border-radius: 0.4rem;
+}
+
 .title {
   font-weight: bold;
 }
 .text-theme {
-  color: #5369f8 !important;
+  color: #6667ab !important;
 }
 </style>

@@ -38,11 +38,11 @@
 
 <style scoped>
 .btn-theme {
-  background-color: #5369f8;
-  border-color: #5369f8;
+  background-color: #6667ab;
+  border-color: #6667ab;
   color: #fff;
 }
 .theme {
-  color: #5369f8 !important;
+  color: #6667ab !important;
 }
 </style>

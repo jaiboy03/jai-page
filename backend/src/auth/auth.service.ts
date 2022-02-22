@@ -43,6 +43,9 @@ export class AuthService {
         const payload = { userId: user.userId, userName: user.name, seq: user.id , role: user.role};
         return {
             statusCode: HttpStatus.OK,
+            userId : payload.userId,
+            userName : payload.userName,
+            role : payload.role,
             accessToken: this.jwtService.sign(payload)
         }
     }
