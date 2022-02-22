@@ -38,14 +38,14 @@
     <div class="container pt-3">
       <div class="post_head d-flex p-3">
         <div class="category_container">
-          <b-button>All</b-button>
+          <b-button @click="getMemo()">All</b-button>
         </div>
         <b-button class="ms-auto post_btn" @click="postPop()">
           <b-icon icon="plus-circle"></b-icon>
         </b-button>
       </div>
-      <div class="post_container row">
-        <Memo />
+      <div class="post_container">
+        <Memo v-bind:memoList="memoList"/>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { RegisterModel } from "@/model/register.model";
 import { UserModel } from "@/model/login.model";
 import Vue from "vue";
 import Vuex from "vuex";
+import { PostModel } from "@/model/post.model";
 
 Vue.use(Vuex);
 
@@ -81,10 +82,43 @@ export default new Vuex.Store({
             resolve(response);
           })
           .catch(error => {
-            reject(error)
+            reject(error);
+          })
+      })
+    },
+    postMemo: function (context, payload) {
+      const date = new Date();
+
+      const params: PostModel = {
+        writerId: payload.writerId,
+        writeDate: date.toISOString(),
+        title: payload.title,
+        contents: payload.contents,
+        category: "All"
+      }
+      return new Promise((resolve, reject) => {
+        http.post("/board", params)
+          .then(response => {
+            console.log(response);
+            resolve(response);
+          })
+          .catch(error => {
+            reject(error);
+          })
+      })
+    },
+    getMemo: function (context, payload) {
+      return new Promise((resolve, reject) => {
+        http.get("/board/" + context.state.userId)
+          .then(response => {
+            resolve(response);
+          })
+          .catch(error => {
+            reject(error);
           })
       })
     }
   },
+
   modules: {},
 });

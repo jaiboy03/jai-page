@@ -1,20 +1,20 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { BoardService } from './board.service';
-import { CreateBoardDto } from './dto/create-board.dto';
-import { Board } from './entities/board.entity';
+import { CreateMemoDto } from './dto/create-memo.dto';
+import { Memo } from './entities/memo.entity';
 
 @Controller('board')
 export class BoardController {
     constructor(private readonly boardService: BoardService) { }
 
     @Post()
-    create(@Body() createBoardDto: CreateBoardDto): Promise<any> {
-        return this.boardService.create(createBoardDto);
+    create(@Body() createMemoDto: CreateMemoDto): Promise<any> {
+        return this.boardService.create(createMemoDto);
     }
 
-    @Get()
-    findAll(): Promise<Board[]> {
-        return this.boardService.findAll();
+    @Get(":id")
+    findAll(@Param('id') id : string): Promise<Memo[]> {
+        return this.boardService.findAll(id);
     }
 
 }

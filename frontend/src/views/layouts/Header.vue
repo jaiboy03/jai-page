@@ -22,9 +22,9 @@
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown> -->
           <b-nav-item-dropdown right v-if="isAuth">
-            <template slot="button-content" v-text="UserName">
+            <template slot="button-content">
               <b-icon icon="person-fill"></b-icon>
-              <b>{{ UserName }}</b>
+              <b>{{ userName }}</b>
             </template>
             <b-dropdown-item href="#">
               <b-icon icon="gear-fill" aria-hidden="true"></b-icon>&nbsp;<b

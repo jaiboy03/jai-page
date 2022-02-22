@@ -1,25 +1,28 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateBoardDto } from './dto/create-board.dto';
-import { Board } from './entities/board.entity';
+import { CreateMemoDto } from './dto/create-memo.dto';
+import { Memo } from './entities/memo.entity';
 
 @Injectable()
 export class BoardService {
+
     constructor(
-        @InjectRepository(Board)
-        private boardRepository: Repository<Board>,
+        @InjectRepository(Memo)
+        private boardRepository: Repository<Memo>,
     ) { }
 
-    async create(createBoardDto: CreateBoardDto): Promise<any> {
+    async create(createBoardDto: CreateMemoDto): Promise<any> {
         const { ...result } = await this.boardRepository.save(createBoardDto);
 
         return { statusCode: HttpStatus.OK, result }
     }
 
-    async findAll(): Promise<Board[]> {
+    async findAll(id : string): Promise<Memo[]> {
         return this.boardRepository.find({
-            select: ["id", "writerId", "writeDate", "title", "contents", "category"]
+            select: ["id", "writerId", "writeDate", "title", "contents", "category"],
+            where : {"writerId" : id},
+            order : {"id" : "DESC"}
         })
     }
 } 

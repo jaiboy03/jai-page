@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BoardController } from './board.controller';
 import { BoardService } from './board.service';
-import { Board } from './entities/board.entity';
+import { Memo } from './entities/memo.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Board]),
+  imports: [TypeOrmModule.forFeature([Memo]),
   ],
   controllers: [BoardController],
   providers: [BoardService],

@@ -4,7 +4,7 @@
     "port" : 3306,
     "username" : "root",
     "password" : "032508",
-    "database" : "jj_crud",
+    "database" : "jj_site",
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize" : true
 }

@@ -1,6 +1,6 @@
 import { IsDateString, IsString } from "class-validator";
 
-export class CreateBoardDto {
+export class CreateMemoDto {
     @IsString()
     writerId : string;
     
@@ -15,4 +15,5 @@ export class CreateBoardDto {
 
     @IsString()
     category : string;
+
 }
