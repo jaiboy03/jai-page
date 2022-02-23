@@ -1,13 +1,15 @@
 import Vue from "vue";
 import Memo from "@/components/memo.vue";
 import Edit from "@/components/pop/editPage.vue";
+import Post from "@/components/pop/postPage.vue";
 import { PostModel } from "@/model/post.model";
 import { UpdateModel } from "@/model/update.model";
 
 export default Vue.extend({
     components: {
         Memo,
-        Edit
+        Edit,
+        Post
     },
     data() {
         return {

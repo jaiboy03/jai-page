@@ -1,42 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="wrap row" v-if="pop">
-      <div class="background" @click="postPop"></div>
-      <div class="post_pop col-9 col-xl-4 p-3">
-        <form>
-          <div class="pop_head">
-            <b-form-group label="Title" label-for="title">
-              <b-input
-                id="title"
-                class="mt-2"
-                placeholder="Enter Title"
-                v-model="post.title"
-              ></b-input>
-            </b-form-group>
-          </div>
-          <div class="pop_body mt-3">
-            <b-form-group label="Contents" label-for="contents">
-              <b-form-textarea
-                id="contents"
-                rows="8"
-                class="mt-2"
-                placeholder="Enter something.."
-                no-resize
-                v-model="post.contents"
-              ></b-form-textarea>
-            </b-form-group>
-          </div>
-          <div class="pop_foot mt-3 d-flex pt-3">
-            <b-button class="ms-auto btn-danger" @click="postPop()"
-              >Cancel</b-button
-            >
-            <b-button class="ms-2 post_btn" @click="submitPost()"
-              >Post</b-button
-            >
-          </div>
-        </form>
-      </div>
-    </div>
+    <Post v-if="pop" v-bind:post="post" @postPop="postPop" @posting="submitPost" />
     <Edit v-if="edit" v-bind:editPost="editPost" @openEdit="openEdit" @editing="editing"/>
     <div class="container pt-3">
       <div class="post_head d-flex p-3">
