@@ -20,3 +20,7 @@ npm run start
 - 02/17 
   - front : login & register page 만들기
   - back : db connect 완료 / login & register 기능 만드는중
+
+- 02/22
+  - front : lr 완, memo create & select 완
+  - back : front와 동일 & memo update & delete 만드는중
