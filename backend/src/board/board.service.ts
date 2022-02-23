@@ -2,6 +2,7 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateMemoDto } from './dto/create-memo.dto';
+import { UpdateMemoDto } from './dto/update-memo.dto';
 import { Memo } from './entities/memo.entity';
 
 @Injectable()
@@ -31,20 +32,11 @@ export class BoardService {
         return { statusCode: HttpStatus.OK, result };
     }
 
-    async update(id: number, writerId: string, updateMemoDto: CreateMemoDto): Promise<void> {
-        const memo = await this.memoRepository.findOne({
-            where: {
-                id: id,
-                writerId: writerId
-            }
-        });
-
-        if (!memo) return null;
-
-        memo.title = updateMemoDto.title || memo.title;
-        memo.contents = updateMemoDto.contents || memo.contents;
-
-        this.memoRepository.save(memo);
+    async update(updateMemoDto: UpdateMemoDto): Promise<void> {
+        const memo = await this.memoRepository.findOne(updateMemoDto.id);
+        memo.title = updateMemoDto.title;
+        memo.contents = updateMemoDto.contents;
+        await this.memoRepository.save(memo);
 
     }
 

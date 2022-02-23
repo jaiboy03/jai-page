@@ -5,6 +5,7 @@ import { UserModel } from "@/model/login.model";
 import Vue from "vue";
 import Vuex from "vuex";
 import { PostModel } from "@/model/post.model";
+import { UpdateModel } from "@/model/update.model";
 
 Vue.use(Vuex);
 
@@ -88,7 +89,7 @@ export default new Vuex.Store({
     },
     postMemo: function (context, payload) {
       const date = new Date();
-
+      
       const params: PostModel = {
         writerId: payload.writerId,
         writeDate: date.toISOString(),
@@ -99,7 +100,6 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         http.post("/board", params)
           .then(response => {
-            console.log(response);
             resolve(response);
           })
           .catch(error => {
@@ -130,8 +130,14 @@ export default new Vuex.Store({
       })
     },
     updateMemo: function (context, payload) {
+      const params: UpdateModel = {
+        id: payload.id,
+        writerId: payload.writerId,
+        title: payload.title,
+        contents: payload.contents
+      }
       return new Promise((resolve, reject) => {
-        http.post("/board/update" + payload) //임시 주소
+        http.patch("/board", params)
           .then(response => {
             resolve(response);
           })

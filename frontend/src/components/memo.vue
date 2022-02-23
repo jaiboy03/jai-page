@@ -2,20 +2,20 @@
   <div class="row">
     <div
       class="col-xl-4 col-lg-6 memo_container mt-3"
-      v-for="item of memoList"
+      v-for="item in memoList"
       v-bind:key="item.id"
     >
       <div class="card card-body">
         <div class="card-top d-flex" v-if="item.title != ''">
           <div class="card-title h3">
-            {{ item.title }}
+            {{ item.title }} 
           </div>
           <b-dropdown no-caret right class="ms-auto memo_menu" size="sm">
             <template slot="button-content">
               <b-icon icon="three-dots-vertical"></b-icon>
             </template>
-            <b-dropdown-item>Edit</b-dropdown-item>
-            <b-dropdown-item variant="danger">Delete</b-dropdown-item>
+            <b-dropdown-item @click="editMemo(item.id)">Edit</b-dropdown-item>
+            <b-dropdown-item variant="danger" @click="deleteMemo(item.id)">Delete</b-dropdown-item>
           </b-dropdown>
         </div>
         <div class="card-middle d-flex">
@@ -26,8 +26,8 @@
             <template slot="button-content">
               <b-icon icon="three-dots-vertical"></b-icon>
             </template>
-            <b-dropdown-item>Edit</b-dropdown-item>
-            <b-dropdown-item variant="danger">Delete</b-dropdown-item>
+            <b-dropdown-item @click="editMemo(item.id)">Edit</b-dropdown-item>
+            <b-dropdown-item variant="danger" @click="deleteMemo(item.id)">Delete</b-dropdown-item>
           </b-dropdown>
         </div>
         <p class="note-inner-content text-muted card-text">

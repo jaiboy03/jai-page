@@ -1,20 +1,30 @@
 import Vue from "vue";
 import Memo from "@/components/memo.vue";
+import Edit from "@/components/pop/editPage.vue";
 import { PostModel } from "@/model/post.model";
+import { UpdateModel } from "@/model/update.model";
 
 export default Vue.extend({
     components: {
-        Memo
+        Memo,
+        Edit
     },
     data() {
         return {
             pop: false,
+            edit: false,
             post: {
                 writerId: '',
                 title: '',
                 contents: '',
             } as PostModel,
-            memoList : []
+            memoList: [],
+            editPost: {
+                writerId: '',
+                id: 0,
+                title: '',
+                contents: '',
+            }
         };
     },
     created() {
@@ -33,9 +43,8 @@ export default Vue.extend({
             });
         },
         submitPost() {
-            if (this.post.contents != '' ) {
+            if (this.post.contents != '') {
                 this.post.writerId = this.$store.getters["getUserID"];
-                console.log(this.post.writerId);
                 this.$store.dispatch("postMemo", this.post).then(response => {
                     if (response.data.statusCode == 200) {
                         this.$swal({
@@ -61,6 +70,36 @@ export default Vue.extend({
                 })
             }
             return;
+        },
+        openEdit() {
+            this.edit = !this.edit;
+        },
+        editMemo(id: number) {
+            this.openEdit();
+            const memo: any = this.memoList.find(x => x.id === id);
+            this.editPost.id = id;
+            this.editPost.title = memo.title;
+            this.editPost.contents = memo.contents;
+
+        },
+        editing(editPost: UpdateModel) {
+            if (editPost.contents != '') {
+                editPost.writerId = this.$store.getters["getUserID"];
+                this.$store.dispatch("updateMemo", editPost)
+                    .then(response => {
+                        this.$swal({
+                            icon: 'success',
+                            title: 'Updated',
+                            showConfirmButton: false,
+                            timer: 800
+                        }).then(() => {
+                            this.openEdit();
+                            this.getMemo();
+                        });
+                    }).catch(error => {
+                        alert(error);
+                    })
+            }
         }
     }
 })

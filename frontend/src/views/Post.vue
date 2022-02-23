@@ -30,11 +30,14 @@
             <b-button class="ms-auto btn-danger" @click="postPop()"
               >Cancel</b-button
             >
-            <b-button class="ms-2 post_btn" @click="submitPost()">Post</b-button>
+            <b-button class="ms-2 post_btn" @click="submitPost()"
+              >Post</b-button
+            >
           </div>
         </form>
       </div>
     </div>
+    <Edit v-if="edit" v-bind:editPost="editPost" @openEdit="openEdit" @editing="editing"/>
     <div class="container pt-3">
       <div class="post_head d-flex p-3">
         <div class="category_container">
@@ -45,7 +48,11 @@
         </b-button>
       </div>
       <div class="post_container">
-        <Memo v-bind:memoList="memoList"/>
+        <Memo
+          v-bind:memoList="memoList"
+          @getMemo="getMemo"
+          @editMemo="editMemo"
+        />
       </div>
     </div>
   </div>
@@ -74,7 +81,8 @@
   width: 100%;
   height: 100vh;
 }
-.post_pop {
+.post_pop,
+.edit_pop {
   position: absolute;
   z-index: 6;
   background-color: white;
