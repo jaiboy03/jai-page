@@ -1,17 +1,17 @@
 import Vue from "vue";
 
 export default Vue.extend({
-    props: {
-        post: {}
+  props: {
+    post: {},
+  },
+
+  methods: {
+    openPostPop() {
+      this.$emit("postPop");
     },
 
-    methods: {
-        openPostPop() {
-            this.$emit('postPop');
-        },
-
-        submitPost() {
-            this.$emit('posting', this.post);
-        }
-    }
-})
+    submitPost() {
+      this.$emit("posting", this.post);
+    },
+  },
+});

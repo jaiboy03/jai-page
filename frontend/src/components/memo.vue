@@ -8,26 +8,36 @@
       <div class="card card-body">
         <div class="card-top d-flex" v-if="item.title != ''">
           <div class="card-title h3">
-            {{ item.title }} 
+            {{ item.title }}
           </div>
           <b-dropdown no-caret right class="ms-auto memo_menu" size="sm">
             <template slot="button-content">
               <b-icon icon="three-dots-vertical"></b-icon>
             </template>
             <b-dropdown-item @click="editMemo(item.id)">Edit</b-dropdown-item>
-            <b-dropdown-item variant="danger" @click="deleteMemo(item.id)">Delete</b-dropdown-item>
+            <b-dropdown-item variant="danger" @click="deleteMemo(item.id)"
+              >Delete</b-dropdown-item
+            >
           </b-dropdown>
         </div>
         <div class="card-middle d-flex">
           <p class="text-muted write_date">
             {{ new Date(item.writeDate).toLocaleString() }}
           </p>
-          <b-dropdown no-caret right class="ms-auto memo_menu" size="sm" v-if="item.title == ''">
+          <b-dropdown
+            no-caret
+            right
+            class="ms-auto memo_menu"
+            size="sm"
+            v-if="item.title == ''"
+          >
             <template slot="button-content">
               <b-icon icon="three-dots-vertical"></b-icon>
             </template>
             <b-dropdown-item @click="editMemo(item.id)">Edit</b-dropdown-item>
-            <b-dropdown-item variant="danger" @click="deleteMemo(item.id)">Delete</b-dropdown-item>
+            <b-dropdown-item variant="danger" @click="deleteMemo(item.id)"
+              >Delete</b-dropdown-item
+            >
           </b-dropdown>
         </div>
         <p class="note-inner-content text-muted card-text">
@@ -38,8 +48,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./memo.component.ts">
-</script>
+<script lang="ts" src="./memo.component.ts"></script>
 
 <style lang="scss" scoped>
 .memo_container {

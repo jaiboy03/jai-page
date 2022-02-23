@@ -1,5 +1,6 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper"
+
     <Post v-if="pop" v-bind:post="post" @postPop="postPop" @posting="submitPost" />
     <Edit v-if="edit" v-bind:editPost="editPost" @openEdit="openEdit" @editing="editing"/>
     <div class="container pt-3">
@@ -63,6 +64,12 @@
 
 .pop_foot {
   border-top: 1px solid #ddd;
+}
+
+.post_btn {
+  background-color: #6667ab;
+}
+</style>id #ddd;
 }
 
 .post_btn {

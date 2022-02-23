@@ -29,7 +29,9 @@
           <b-button class="ms-auto btn-danger" @click="openEditPop()"
             >Cancel</b-button
           >
-          <b-button class="ms-2 post_btn" @click="submitPost()">Update</b-button>
+          <b-button class="ms-2 post_btn" @click="submitPost()"
+            >Update</b-button
+          >
         </div>
       </form>
     </div>

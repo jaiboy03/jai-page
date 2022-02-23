@@ -10,15 +10,12 @@ import Header from "@/views/layouts/Header.vue";
 export default class App extends Vue {
   data() {
     return {
-      id: ""
-    }
+      id: "",
+    };
   }
 
   public getInfo() {
-
     // this.$store.dispatch('info',).then(response => {
     // })
   }
-
- 
 }

@@ -47,8 +47,8 @@ const routes: Array<RouteConfig> = [
     path: "/poster",
     name: "Post",
     component: Memo,
-    beforeEnter: beforeAuth(true)
-  }
+    beforeEnter: beforeAuth(true),
+  },
 ];
 
 const router = new VueRouter({

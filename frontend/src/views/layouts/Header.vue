@@ -27,7 +27,9 @@
               <b>{{ userName }}</b>
             </template>
             <b-dropdown-item href="#">
-              <b-icon icon="gear-fill" aria-hidden="true"></b-icon>&nbsp;<b>Account</b>
+              <b-icon icon="gear-fill" aria-hidden="true"></b-icon>&nbsp;<b
+                >Account</b
+              >
             </b-dropdown-item>
             <b-dropdown-item href="#" v-on:click="Logout()"
               ><b-icon icon="power" aria-hidden="true"></b-icon>&nbsp;<b
@@ -41,8 +43,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./header.ts">
-</script>
+<script lang="ts" src="./header.ts"></script>
 
 <style scoped>
 .theme {

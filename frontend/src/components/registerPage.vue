@@ -40,7 +40,14 @@
           v-model="passwordC"
         />
       </div>
-      <button type="submit" class="btn btn-theme" @click="checkForm" style="width : 100%">Register</button>
+      <button
+        type="submit"
+        class="btn btn-theme"
+        @click="checkForm"
+        style="width: 100%"
+      >
+        Register
+      </button>
     </form>
   </div>
 </template>

@@ -36,8 +36,7 @@
   </div>
 </template>
 
-<script lang="ts" src ="./post.component.ts">
-</script>
+<script lang="ts" src="./post.component.ts"></script>
 
 <style lang="scss" scoped>
 .wrap {
